@@ -2,13 +2,13 @@ package com.example.actifitystaff
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultStaff {
+class ResultStaff {
     @field:SerializedName("pesan")
-    val pesan: String? = null,
+    val pesan: String? = null
 
     @field:SerializedName("staff")
-    val staff: List<DataItem>? = null,
+    val staff: List<DataItem>? = null
 
     @field:SerializedName("status")
-    val status: Int? = null,
+    val status: Int? = null
 }

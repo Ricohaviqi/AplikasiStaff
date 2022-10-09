@@ -10,7 +10,7 @@ class Presenter(val crudView: MainActivity) {
         NetworkConfig.getService().getData()
             .enqueue(object : retrofit2.Callback<ResultStaff> {
                 override fun onFailure(call: Call<ResultStaff>, t: Throwable) {
-                    crudView.onFailedGget(t.localizedMessage)
+                    crudView.onFailedGet(t.localizedMessage)
                     Log.d("Error","Error Data")
                 }
 
@@ -19,7 +19,9 @@ class Presenter(val crudView: MainActivity) {
                         val status = response.body()?.status
                         if (status == 200) {
                             val data = response.body()?.staff
-                            crudView.onSuccessGet(data)
+                            if (data != null) {
+                                crudView.onSuccessGet(data)
+                            }
                         } else {
                             crudView.onFailedGet("Error $status")
                         }
@@ -33,18 +35,18 @@ class Presenter(val crudView: MainActivity) {
                         .deleteStaff(id)
                         .enqueue(object: retrofit2.Callback<ResultStatus> {
                         override fun onFailure(call: Call<ResultStatus>, t: Throwable) {
-                            CrudView.onErrorDelete(t.localizedMessage)
+                            crudView.onErrorDelete(t.localizedMessage)
                         }
 
                         override fun onResponse(call: Call<ResultStatus>, response: Response<ResultStatus>
                         ) {
                             if (response.isSuccessful && response.body()?.status == 200) {
-                                CrudView.onSuccessDelete(response.body()?.pesan ?: "")
+                                crudView.onSuccessDelete(response.body()?.pesan ?: "")
                             } else {
-                                CrudView.onErrorDelete(response.body()?.pesan ?: "")
+                                crudView.onErrorDelete(response.body()?.pesan ?: "")
                             }
                         }
-                    }
+
                 })
 }
 }

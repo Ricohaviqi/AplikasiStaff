@@ -1,5 +1,6 @@
 package com.example.actifitystaff
 
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -51,5 +52,11 @@ object NetworkConfig {
                      @Field("name") name: String,
                      @Field("hp") hp: String,
                      @Field("alamat") alamat: String) : Call<ResultStaff>
+
+     //fungsi delete
+     @FormUrlEncoded
+     @POST("deleteStaff")
+     fun deleteStaff(@Field("id") id: String?) : Call<ResultStatus>
+
 
  }

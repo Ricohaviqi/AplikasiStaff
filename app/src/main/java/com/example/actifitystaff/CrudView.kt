@@ -1,6 +1,7 @@
 package com.example.actifitystaff
 
-interface CrudView {//get data
+interface CrudView {
+    //get data
 fun onSuccessGet(data: List<DataItem>)
     fun onFailedGet(msg: String)
 
